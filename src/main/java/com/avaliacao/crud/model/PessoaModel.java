@@ -2,6 +2,8 @@ package com.avaliacao.crud.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,27 +23,7 @@ public class PessoaModel {
 
     private String uf;
 
-    //@OneToMany()
-    //private List<ContatoModel> contatoList;
-
-
-
-  /*
-  * // public PessoaModel(){}
-  *
-  * public PessoaModel(Long id, String nome, String endereco, int cep, String cidade, String uf) {
-        super();
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.cep = cep;
-        this.cidade = cidade;
-        this.uf = uf;
-    }
-
-  * */
-
-
+    List<ContatoModel> contatoModelList = new ArrayList<>();
     @Override
     public int hashCode() {
         return Objects.hash(id);
