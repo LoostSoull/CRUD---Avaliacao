@@ -1,18 +1,22 @@
 package com.avaliacao.crud.services;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.avaliacao.crud.dtos.PessoaMalaDireta;
 import com.avaliacao.crud.model.PessoaModel;
 import com.avaliacao.crud.repositories.PessoasRepository;
 import com.avaliacao.crud.services.interfaces.PessoaServiceInterface;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PessoaService implements PessoaServiceInterface {
 
     private PessoasRepository pessoasRepository;
+    
     @Override
     public PessoaModel save(PessoaModel pessoaModel) {
         return pessoasRepository.save(pessoaModel);
@@ -37,4 +41,6 @@ public class PessoaService implements PessoaServiceInterface {
     public void delete(Long id) {
 
     }
+    
+   
 }
