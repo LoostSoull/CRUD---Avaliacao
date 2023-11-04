@@ -13,11 +13,21 @@ public class ContatoModel {
     private int tipoContato;
 
     @Column(nullable = false)
-    private int contato;
+    private String contato;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
     private PessoaModel pessoa;
+
+
+    private ContatoModel(){}
+
+    public ContatoModel(Long id, int tipoContato, String contato, PessoaModel pessoa) {
+        this.id = id;
+        this.tipoContato = tipoContato;
+        this.contato = contato;
+        this.pessoa = pessoa;
+    }
 
     public Long getId() {
         return id;
@@ -35,12 +45,19 @@ public class ContatoModel {
         this.tipoContato = tipoContato;
     }
 
-    public int getContato() {
+    public String getContato() {
         return contato;
     }
 
-    public void setContato(int contato) {
+    public void setContato(String contato) {
         this.contato = contato;
     }
 
+    public PessoaModel getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(PessoaModel pessoa) {
+        this.pessoa = pessoa;
+    }
 }

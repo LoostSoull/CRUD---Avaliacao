@@ -13,6 +13,7 @@ public class PessoaModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
 
     private String endereco;
@@ -23,7 +24,18 @@ public class PessoaModel {
 
     private String uf;
 
-    List<ContatoModel> contatoModelList = new ArrayList<>();
+
+    private PessoaModel(){}
+
+    public PessoaModel(Long id, String nome, String endereco, int cep, String cidade, String uf) {
+        this.id = id;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.cep = cep;
+        this.cidade = cidade;
+        this.uf = uf;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
