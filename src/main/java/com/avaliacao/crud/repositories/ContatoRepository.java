@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ContatoRepository extends JpaRepository<ContatoModel, Long> {
 
-    List<ContatoModel> findAllByPessoaIdContato(Long pessoa_id);
+    List<ContatoModel> findAllByPessoaId(Long pessoa_id);
 
 
 }

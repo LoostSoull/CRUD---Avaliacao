@@ -47,7 +47,7 @@ public class ContatoService {
 
     public List<ContatoModel> getAll(Long pessoa_id) {
 
-        return contatoRepository.findAllByPessoaIdContato(pessoa_id);
+        return contatoRepository.findAllByPessoaId(pessoa_id);
 
 
     }

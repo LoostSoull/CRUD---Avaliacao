@@ -88,7 +88,7 @@ public class PessoaController {
 
     @GetMapping("/{pessoa_id}/contatos")
     public List<ContatoModel> listarContatosDaPessoa(@PathVariable Long pessoa_id) {
-        return contatoRepository.findAllByPessoaIdContato(pessoa_id);
+        return contatoRepository.findAllByPessoaId(pessoa_id);
     }
 
 }
