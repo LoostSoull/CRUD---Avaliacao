@@ -31,12 +31,13 @@ public class ContatoService {
 
     public ContatoModel save(ContatoModel contatoModel,Long pessoa_id) {
         Optional<PessoaModel> pessoaModelOptional= pessoaRepository.findById(pessoa_id);
-        if(pessoaModelOptional.isPresent()){
+        if(pessoaModelOptional.isPresent() && contatoModel.getTipoContato() == 0 ||contatoModel.getTipoContato() == 1 ){
             PessoaModel pessoaModel = pessoaModelOptional.get();
             contatoModel.setPessoa(pessoaModel);
             return contatoRepository.save(contatoModel);
         }
-        return contatoModel;
+        
+      return null ;
     }
 
 
