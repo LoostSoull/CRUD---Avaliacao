@@ -65,7 +65,7 @@ public class ContatoService {
     }
 
 
-    public void delete(Long id) {
+    public void contatoDelete(Long id) {
     contatoRepository.deleteById(id);
     }
 }

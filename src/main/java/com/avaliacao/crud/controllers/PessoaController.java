@@ -28,7 +28,7 @@ import com.avaliacao.crud.services.PessoaService;
 public class PessoaController {
 
 
-    PessoasRepository pessoasRepository;
+   private PessoasRepository pessoasRepository;
 
     private ContatoRepository contatoRepository;
 
@@ -59,7 +59,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getPessoaId(@PathVariable(value="id") Long id){
+    public ResponseEntity<Object> getPessoaId(@PathVariable Long id){
         Optional<PessoaModel> pessoaObject = pessoasRepository.findById(id);
         if(pessoaObject.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pessoa nao encontrada");
@@ -68,23 +68,23 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updatePessoa(@PathVariable(value="id") Long id , @RequestBody PessoaModel pessoaModel){
-        Optional<PessoaModel> pessoaObject = pessoasRepository.findById(id);
-        if(pessoaObject.isEmpty()){
+    public ResponseEntity<Object> updatePessoa(@PathVariable  Long id , @RequestBody PessoaModel pessoaModel){
+    	ResponseEntity<Object> pessoaObject = pessoaService.update(id,pessoaModel);
+        if(pessoaObject == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pessoa nao encontrada");
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoasRepository.save(pessoaModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.save(pessoaModel));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePessoa(@PathVariable(value="id") Long id){
+    public ResponseEntity<Object> deletePessoa(@PathVariable Long id){
         Optional<PessoaModel> pessoaObject = pessoasRepository.findById(id);
         if(pessoaObject.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pessoa nao encontrada");
         }
         pessoasRepository.delete(pessoaObject.get());
-        return ResponseEntity.status(HttpStatus.OK).body("o produto foi deletado");
+        return ResponseEntity.status(HttpStatus.OK).body("a pessoa foi deletado");
     }
 //coontato
     @PostMapping("/{id}/contatos")

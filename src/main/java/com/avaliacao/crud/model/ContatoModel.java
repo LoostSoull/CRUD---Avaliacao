@@ -1,6 +1,19 @@
 package com.avaliacao.crud.model;
 
-import jakarta.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="contatos")
@@ -10,13 +23,15 @@ public class ContatoModel {
     private Long id;
 
     @Column(nullable = false)
+    @NotEmpty
     private int tipoContato;
 
     @Column(nullable = false)
     private String contato;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     private PessoaModel pessoa;
 
 

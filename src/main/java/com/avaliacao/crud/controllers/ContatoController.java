@@ -48,13 +48,14 @@ public class ContatoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePessoa(@PathVariable(value="id") Long id){
+    public ResponseEntity<?> contatoDelete(@PathVariable Long id){
         Optional<ContatoModel> contatoObject = contatoRepository.findById(id);
         if(contatoObject.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("contato nao encontrada");
         }
-        contatoRepository.delete(contatoObject.get());
-        return ResponseEntity.status(HttpStatus.OK).body("o produto foi deletado");
+        //contatoRepository.deleteById(id);
+        contatoService.contatoDelete(id) ;
+        return ResponseEntity.status(HttpStatus.OK).body("o contato foi deletado");
     }
 
 }

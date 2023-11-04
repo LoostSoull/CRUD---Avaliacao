@@ -11,6 +11,6 @@ public interface ContatoServiceInterface {
     Optional<ContatoModel> getById(Long id);
     List<ContatoModel> getAll(Long pessoa_id);
     ContatoModel update(ContatoModel contatoModel,Long id);
-    void delete(Long id);
+    void contatoDelete(Long id);
 
 }
