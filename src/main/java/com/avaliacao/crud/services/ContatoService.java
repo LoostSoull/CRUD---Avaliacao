@@ -6,8 +6,11 @@ import com.avaliacao.crud.repositories.ContatoRepository;
 import com.avaliacao.crud.repositories.PessoasRepository;
 import com.avaliacao.crud.services.interfaces.ContatoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,17 +45,27 @@ public class ContatoService {
     }
 
 
-    public List<ContatoModel> getAll() {
-        return null;
+    public List<ContatoModel> getAll(Long pessoa_id) {
+
+        return contatoRepository.findAllByPessoaIdContato(pessoa_id);
+
+
     }
 
 
-    public ContatoModel update(ContatoModel contatoModel) {
-        return null;
+    public ContatoModel update(ContatoModel contatoModel,Long id) {
+        Optional<ContatoModel> contatoModelOptionalatt = contatoRepository.findById(id);
+        if(contatoModelOptionalatt.isPresent()){
+            ContatoModel contatoModelnew = contatoModelOptionalatt.get();
+            contatoModelnew.setContato(contatoModel.getContato());
+            contatoModelnew.setTipoContato(contatoModel.getTipoContato());
+            return contatoRepository.save(contatoModelnew);
+        }
+        return contatoModel;
     }
 
 
     public void delete(Long id) {
-
+    contatoRepository.deleteById(id);
     }
 }

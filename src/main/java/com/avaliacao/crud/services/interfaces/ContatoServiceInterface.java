@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface ContatoServiceInterface {
     ContatoModel save(ContatoModel contatoModel,Long pessoa_id);
     Optional<ContatoModel> getById(Long id);
-    List<ContatoModel> getAll();
-    ContatoModel update(ContatoModel contatoModel);
+    List<ContatoModel> getAll(Long pessoa_id);
+    ContatoModel update(ContatoModel contatoModel,Long id);
     void delete(Long id);
 
 }

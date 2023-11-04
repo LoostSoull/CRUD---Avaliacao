@@ -75,13 +75,20 @@ public class PessoaController {
         pessoasRepository.delete(pessoaObject.get());
         return ResponseEntity.status(HttpStatus.OK).body("o produto foi deletado");
     }
-
+//coontato
     @PostMapping("/{id}/contatos")
     public ResponseEntity<ContatoModel> saveContato(@PathVariable Long id,@RequestBody ContatoModel contatoModel){
 
          ContatoModel contatoModels = contatoService.save(contatoModel, id);
 
        return ResponseEntity.status(HttpStatus.CREATED).body(contatoRepository.save(contatoModels));
+    }
+
+    //Lista de contatos
+
+    @GetMapping("/{pessoa_id}/contatos")
+    public List<ContatoModel> listarContatosDaPessoa(@PathVariable Long pessoa_id) {
+        return contatoRepository.findAllByPessoaIdContato(pessoa_id);
     }
 
 }

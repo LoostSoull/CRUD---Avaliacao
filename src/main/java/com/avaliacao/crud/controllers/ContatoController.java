@@ -39,22 +39,22 @@ public class ContatoController {
         return ResponseEntity.ok().body(pessoaObject);
     }
 
-   /* @GetMapping("/{id}")
-    public ResponseEntity<Object> getContatoPessoaId(@PathVariable(value = "id") Long id) {
-        Optional<PessoaModel> pessoaObject = pessoasRepository.findById(id);
-        if (pessoaObject.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Contato nao encontrada");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaObject.get());
-    }*/
+
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateContato(@PathVariable(value = "id") Long id, @RequestBody ContatoModel contatoModel) {
+    public ResponseEntity<ContatoModel> updateContato(@PathVariable Long id, @RequestBody ContatoModel contatoModel) {
+        return new ResponseEntity<>(contatoService.update(contatoModel,id),HttpStatus.CREATED);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletePessoa(@PathVariable(value="id") Long id){
         Optional<ContatoModel> contatoObject = contatoRepository.findById(id);
-        if (contatoObject.isEmpty()) {
+        if(contatoObject.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("contato nao encontrada");
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(contatoRepository.save(contatoModel));
+        contatoRepository.delete(contatoObject.get());
+        return ResponseEntity.status(HttpStatus.OK).body("o produto foi deletado");
     }
 
 }
