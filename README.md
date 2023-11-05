@@ -8,6 +8,8 @@
 
 -**Maven-3.9.1**
 
+-**utilizado banco de dados MySql**
+
 ### API realiza o cadastro de pessoas e contatos, formando um relacionamento de **um para muitos** , Entre a tabela de contatos e pessoas, onde uma pessoa pode ter mais de um contato.
 
 ### Arquivo Jason com end-points para postman adicionado
